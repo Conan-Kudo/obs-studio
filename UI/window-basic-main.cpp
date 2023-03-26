@@ -1413,7 +1413,7 @@ bool OBSBasic::InitBasicConfigDefaults()
 	config_set_default_bool(basicConfig, "AdvOut", "UseRescale", false);
 	config_set_default_uint(basicConfig, "AdvOut", "TrackIndex", 1);
 	config_set_default_uint(basicConfig, "AdvOut", "VodTrackIndex", 2);
-	config_set_default_string(basicConfig, "AdvOut", "Encoder", "obs_x264");
+	config_set_default_string(basicConfig, "AdvOut", "Encoder", "ffmpeg_openh264");
 
 	config_set_default_string(basicConfig, "AdvOut", "RecType", "Standard");
 
@@ -1546,10 +1546,10 @@ void OBSBasic::InitBasicConfigDefaults2()
 
 	config_set_default_string(basicConfig, "SimpleOutput", "StreamEncoder",
 				  useNV ? SIMPLE_ENCODER_NVENC
-					: SIMPLE_ENCODER_X264);
+					: SIMPLE_ENCODER_OPENH264);
 	config_set_default_string(basicConfig, "SimpleOutput", "RecEncoder",
 				  useNV ? SIMPLE_ENCODER_NVENC
-					: SIMPLE_ENCODER_X264);
+					: SIMPLE_ENCODER_OPENH264);
 
 	if (update_nvenc_presets(basicConfig))
 		config_save_safe(basicConfig, "tmp", nullptr);
@@ -1821,7 +1821,7 @@ void OBSBasic::OBSInit()
 
 	InitBasicConfigDefaults2();
 
-	CheckForSimpleModeX264Fallback();
+	CheckForSimpleModeH264Fallback();
 
 	blog(LOG_INFO, STARTUP_SEPARATOR);
 

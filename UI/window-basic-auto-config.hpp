@@ -49,6 +49,7 @@ class AutoConfig : public QWizard {
 		AMD,
 		Apple,
 		Stream,
+		OpenH264,
 	};
 
 	enum class Quality {
@@ -71,7 +72,7 @@ class AutoConfig : public QWizard {
 	Service service = Service::Other;
 	Quality recordingQuality = Quality::Stream;
 	Encoder recordingEncoder = Encoder::Stream;
-	Encoder streamingEncoder = Encoder::x264;
+	Encoder streamingEncoder = Encoder::OpenH264;
 	Type type = Type::Streaming;
 	FPSType fpsType = FPSType::PreferHighFPS;
 	int idealBitrate = 2500;

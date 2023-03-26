@@ -1269,7 +1269,9 @@ static QString get_adv_fallback(const QString &enc)
 		return "h264_texture_amf";
 	if (enc == "com.apple.videotoolbox.videoencoder.ave.hevc")
 		return "com.apple.videotoolbox.videoencoder.ave.avc";
-	return "obs_x264";
+	if (enc == "obs_x264")
+		return "obs_x264";
+	return "ffmpeg_openh264";
 }
 
 static QString get_simple_fallback(const QString &enc)
@@ -1282,7 +1284,9 @@ static QString get_simple_fallback(const QString &enc)
 		return SIMPLE_ENCODER_AMD;
 	if (enc == SIMPLE_ENCODER_APPLE_HEVC)
 		return SIMPLE_ENCODER_APPLE_H264;
-	return SIMPLE_ENCODER_X264;
+	if (enc == SIMPLE_ENCODER_X264)
+		return SIMPLE_ENCODER_X264;
+	return SIMPLE_ENCODER_OPENH264;
 }
 
 bool OBSBasicSettings::ServiceSupportsCodecCheck()
@@ -1405,8 +1409,13 @@ void OBSBasicSettings::ResetEncoders(bool streamOnly)
 
 #define ENCODER_STR(str) QTStr("Basic.Settings.Output.Simple.Encoder." str)
 
-	ui->simpleOutStrEncoder->addItem(ENCODER_STR("Software.X264.H264"),
-					 QString(SIMPLE_ENCODER_X264));
+
+	ui->simpleOutStrEncoder->addItem(ENCODER_STR("Software.OpenH264.H264"),
+					 QString(SIMPLE_ENCODER_OPENH264));
+	if (service_supports_encoder(codecs, "obs_x264"))
+		ui->simpleOutStrEncoder->addItem(
+			ENCODER_STR("Software.X264.H264"),
+			QString(SIMPLE_ENCODER_X264));
 	if (service_supports_encoder(codecs, "obs_qsv11"))
 		ui->simpleOutStrEncoder->addItem(
 			ENCODER_STR("Hardware.QSV.H264"),

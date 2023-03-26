@@ -1061,8 +1061,10 @@ inline const char *AutoConfig::GetEncoderId(Encoder enc)
 		return SIMPLE_ENCODER_AMD;
 	case Encoder::Apple:
 		return SIMPLE_ENCODER_APPLE_H264;
-	default:
+	case Encoder::x264:
 		return SIMPLE_ENCODER_X264;
+	default:
+		return SIMPLE_ENCODER_OPENH264;
 	}
 };
 

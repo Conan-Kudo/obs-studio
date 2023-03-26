@@ -62,6 +62,7 @@ class OBSBasicStats;
 #define AUX_AUDIO_3 Str("AuxAudioDevice3")
 #define AUX_AUDIO_4 Str("AuxAudioDevice4")
 
+#define SIMPLE_ENCODER_OPENH264 "ffmpeg_openh264"
 #define SIMPLE_ENCODER_X264 "x264"
 #define SIMPLE_ENCODER_X264_LOWCPU "x264_lowcpu"
 #define SIMPLE_ENCODER_QSV "qsv"
@@ -431,7 +432,7 @@ private:
 	void DeleteProfile(const char *profile_name, const char *profile_dir);
 	void RefreshProfiles();
 	void ChangeProfile();
-	void CheckForSimpleModeX264Fallback();
+	void CheckForSimpleModeH264Fallback();
 
 	void SaveProjectNow();
 
