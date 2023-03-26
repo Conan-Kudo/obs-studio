@@ -36,6 +36,7 @@ extern struct obs_output_info replay_buffer;
 extern struct obs_output_info ffmpeg_hls_muxer;
 extern struct obs_encoder_info aac_encoder_info;
 extern struct obs_encoder_info opus_encoder_info;
+extern struct obs_encoder_info oh264_encoder_info;
 extern struct obs_encoder_info h264_nvenc_encoder_info;
 #ifdef ENABLE_HEVC
 extern struct obs_encoder_info hevc_nvenc_encoder_info;
@@ -366,6 +367,7 @@ bool obs_module_load(void)
 	obs_register_output(&ffmpeg_hls_muxer);
 	obs_register_output(&replay_buffer);
 	obs_register_encoder(&aac_encoder_info);
+	register_encoder_if_available(&oh264_encoder_info, "libopenh264");
 	register_encoder_if_available(&svt_av1_encoder_info, "libsvtav1");
 	register_encoder_if_available(&aom_av1_encoder_info, "libaom-av1");
 	obs_register_encoder(&opus_encoder_info);
