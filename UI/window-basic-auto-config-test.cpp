@@ -194,7 +194,7 @@ void AutoConfigTestPage::TestBandwidthThread()
 
 	OBSEncoderAutoRelease vencoder = obs_video_encoder_create((wiz->x264Available ? "obs_x264" : "ffmpeg_openh264"),
 								  "test_h264", nullptr, nullptr);
-	OBSEncoderAutoRelease aencoder = obs_audio_encoder_create("ffmpeg_aac", "test_aac", nullptr, 0, nullptr);
+	OBSEncoderAutoRelease aencoder = obs_audio_encoder_create("libfdk_aac", "test_aac", nullptr, 0, nullptr);
 	OBSServiceAutoRelease service = obs_service_create(serverType, "test_service", nullptr, nullptr);
 
 	/* -----------------------------------*/
@@ -559,7 +559,7 @@ bool AutoConfigTestPage::TestSoftwareEncoding()
 
 	OBSEncoderAutoRelease vencoder = obs_video_encoder_create((wiz->x264Available ? "obs_x264" : "ffmpeg_openh264"),
 								  "test_h264", nullptr, nullptr);
-	OBSEncoderAutoRelease aencoder = obs_audio_encoder_create("ffmpeg_aac", "test_aac", nullptr, 0, nullptr);
+	OBSEncoderAutoRelease aencoder = obs_audio_encoder_create("libfdk_aac", "test_aac", nullptr, 0, nullptr);
 	OBSOutputAutoRelease output = obs_output_create("null_output", "null", nullptr, nullptr);
 
 	/* -----------------------------------*/
